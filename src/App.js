@@ -1,36 +1,29 @@
 import React, { Component } from "react";
 import "./App.css";
+import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
+import Signup from './components/Signup'
+import Signin from './components/Signin'
+import Dashboard from './components/Dashboard'
 
-//its a function that returns higer order compoent
-import { connect } from "react-redux";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="age">
-          Your age: <span>{this.props.age}</span>
-        </div>
-        <button className="ageUp" onClick={this.props.onAgeUp}>Age UP</button>
-        <button className="ageDown" onClick={this.props.onAgeDown}>Age Down</button>
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Signup}></Route>
+            <Route exact path='/signin' component={Signin}></Route>
+            <Route exact path='/dashboard' component={Dashboard}></Route> 
+
+          </Switch>
+        </Router>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    age: state.age
-  };
-};
+export default App;
 
-const mapDispachToProps = dispatch => {
-  return {
-    onAgeUp: () => dispatch({ type: "AGE_UP", value: 1 }),
-    onAgeDown: () => dispatch({ type: "AGE_DOWN", value: 1 })
-  };
-};
-export default connect(
-  mapStateToProps,
-  mapDispachToProps
-)(App);
+
+

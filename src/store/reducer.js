@@ -1,20 +1,29 @@
+import *as ActionTypes from '../Actions/types';
+
 const initialState = {
-  age: 20
+  regmsg:'',
+  loginmsg:'',
+ user:[]
 };
 
 const reducer = (state = initialState, action) => {
+  debugger
   const newState = { ...state };
 
-  switch (action.type) {
-    case "AGE_UP":
-      newState.age += action.value;
-      break;
+if(action.type=='REG'){
+  newState.regmsg=action.payload;
+  
+}
+if(action.type=='LOGIN'){
+  newState.loginmsg=action.payload;
+}
 
-    case "AGE_DOWN":
-      newState.age += action.value;
-      break;
-  }
-  return newState;
+if(action.type=='USER'){
+  newState.user=action.payload;
+}
+
+      return newState;
+  
 };
 
 export default reducer;
